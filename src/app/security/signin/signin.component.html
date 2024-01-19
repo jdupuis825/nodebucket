@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card shadow">
+        <div class="card-title text-center boarder-bottom">
+          <h2 class="p-3">Employee Sign In</h2>
+        </div>
+
+        <!-- error messages -->
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="signinForm" (ngSubmit)="signin(); signinForm.reset();">
+            <div class="mb-4">
+              <label for="empId" class="form-label">Employee ID:</label>
+              <input type="text" class="form-control" id="empId" formControlName="empId">
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-dark">
+                <span *ngIf="isLoading">Sign In</span>
+
+                <div *ngif="isLoading">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <a routerLink="/" class="text-dark text-underline-hover">Return</a>
+    </div>
+  </div>
+</div>
