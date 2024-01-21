@@ -1,24 +1,6 @@
-
-h2 {
-  color: darkgoldenrod;
-  text-align: center;
-  font-size: 2em;
-  margin-top: 2%;
-  margin-bottom: 2%;
-}
-
-p {
- text-align: center;
- font-size: 1.2em;
-}
-
-
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-em {
-  text-align: center;
-}
+/**
+Name: Jocelyn Dupuis
+File: base-layout.component.css
+Date: 01/21/2024
+Description: CSS file for base-layout component
+*/

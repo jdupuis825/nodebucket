@@ -1,11 +1,33 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <h1>Home Component Works! <span class="material-icons">thumb_up</span></h1>
-    </div>
+<!--Name: Jocelyn Dupuis -->
+<!--File: home.component.html -->
+<!--Date: 01/18/2023-->
+<!--Description: HTML file for home component-->
+
+<div class="container-home">
+
+    <!--details about the loan app business-->
+  <div fxFlex>
+    <br />
+    <h2 class="yellow">Welcome to the Ravenclaw Task Manager - Nodebucket!</h2>
+    <p>
+      A task manager app for employees inspired by the best Harry Potter House: Ravenclaw.
+    </p>
+
   </div>
 
-  <a routerLink="/security">Test Security Module</a>
+  <!--image display-->
+  <div>
+    <img class="home-pic" src="./assets/ravenclaw-landing-page.jpeg" alt="picture of ravenclaw banner" width="50%" />
+    <!--photo attribution and link-->
+    <p class="attribution-link">Source: <a href="#">name goes here</a></p>
+  </div>
+
+      <!--The router outlet is where the different child components of the base layout are rendered.-->
+      <!--<router-outlet></router-outlet>-->
+
 </div>
 
 
+<br>
+
+<a routerLink="/security">Test Security Module</a>

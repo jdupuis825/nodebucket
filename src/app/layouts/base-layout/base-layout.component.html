@@ -1,32 +1,14 @@
-<!-- website navbar-->
-<app-nav></app-nav>
+<!--Name: Jocelyn Dupuis -->
+<!--File: base-layout.component.html -->
+<!--Date: 01/18/2023-->
+<!--Description: HTML file for base-layout component-->
+
+
+<app-nav></app-nav> <!-- website navbar -->
 
 <main>
-  <!--details about the loan app business-->
-  <div fxFlex>
-    <br />
-    <h2 class="yellow">Welcome to the Ravenclaw Task Manager!</h2>
-    <p>
-      A task manager for employees inspired by best Harry Potter House: Ravenclaw.
-    </p>
-
-  </div>
-      <!--image display-->
-      <div>
-        <img src="./assets/ravenclaw-landing-page.jpeg" width="50%" />
-      </div>
-
-      <!--photo attribution and link-->
-      <div>
-        <em>
-          Photo by <a class="attribution-link" href="https://www.pinterest.com/pin/159526011772866768/" target="_blank">Darian Rust</a>
-        </em>
-      </div>
-
-
-    <!--The router outlet is where the different child components of the base layout are rendered.-->
-    <router-outlet></router-outlet>
+  <!-- The router outlet is where the different child components of the BaseLayout are rendered.  -->
+  <router-outlet style="height: 100%; width: 100%;"></router-outlet>
 </main>
 
-<!-- website footer -->
-<app-footer></app-footer>
+<app-footer></app-footer> <!-- website footer -->

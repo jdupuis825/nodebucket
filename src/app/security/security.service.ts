@@ -1,3 +1,9 @@
+/**
+ * Title: security.service.ts
+ * Author: Jocelyn Dupuis
+ * Date: 01/18/2024
+ * Description: ts file for security service
+ */
 
 //import statements
 import { Injectable } from '@angular/core';

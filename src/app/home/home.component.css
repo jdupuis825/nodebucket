@@ -1,0 +1,36 @@
+/**
+Name: Jocelyn Dupuis
+File: home.component.css
+Date: 01/21/2024
+Description: CSS file for home component
+*/
+
+.container-home {
+  background-color: #000000;
+  height: 100%;
+  width: 100%;
+}
+
+h2 {
+  color: #946b2d;
+  text-align: center;
+  font-size: 2em;
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+p {
+ text-align: center;
+ font-size: 1.2em;
+ color: white;
+}
+
+.home-pic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.attribution-link {
+  font-size: small;
+}

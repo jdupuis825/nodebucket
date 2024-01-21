@@ -17,6 +17,7 @@ export interface AppUser {
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
+//exports
 export class NavComponent {
   appUser: AppUser
   isLoggedIn: boolean;
@@ -33,6 +34,7 @@ export class NavComponent {
     }
   }
 
+  //sign out function
   signout() {
     console.log('Signing out...');
     this.cookieService.deleteAll();
