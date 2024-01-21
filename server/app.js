@@ -5,7 +5,7 @@
  * Description: Route handling
  */
 
-// Require statements
+//require statements
 const express = require('express')
 const createServer = require('http-errors')
 const path = require('path')
@@ -14,7 +14,7 @@ const swaggerJsdoc = require('swagger-jsdoc');
 
 const employeeRoute = require("./routes/employee");
 
-//Create an options object containing a title and version number
+//title and version number
 const options = {
   definition: {
       openapi: "3.0.0",
@@ -23,21 +23,21 @@ const options = {
           version: "1.0.0",
       },
   },
-  //Set the object APIs to be in the routes folder
+  //set API to the routes folder
   apis: ['server/routes/*.js'],
 };
 
-//Declare an openapi specifications variable using the swaggerJsdoc library
+//openapi specifications variable using swaggerJsdoc
 const openapiSpecification = swaggerJsdoc(options);
 
-// Create the Express app
+// Creates express app
 const app = express()
 
-//Wire the openapispecification variable to the app variable
+//wires openapiSpecification to the app
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 
-// Configure the app
+//configures app
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../dist/nodebucket')))
@@ -45,16 +45,16 @@ app.use('/', express.static(path.join(__dirname, '../dist/nodebucket')))
 
 app.use("/api/employees", employeeRoute)
 
-// error handler for 404 errors
+//error handler: 404 errors
 app.use(function(req, res, next) {
   next(createServer(404)) // forward to error handler
 })
 
-// error handler for all other errors
+//error handler: all other errors
 app.use(function(err, req, res, next) {
   res.status(err.status || 500) // set response status code
 
-  // send response to client in JSON format with a message and stack trace
+  //sends response to client in JSON format with a message and stack trace
   res.json({
     type: 'error',
     status: err.status,
@@ -63,4 +63,5 @@ app.use(function(err, req, res, next) {
   })
 })
 
-module.exports = app // export the Express application
+//exports the Express application
+module.exports = app

@@ -1,10 +1,17 @@
+/**
+ * Title: mongo.js
+ * Author: Jocelyn Dupuis
+ * Date: 1/18/2024
+ * Description: Route handling
+ */
+
 "use strict";
 
 //
 const { MongoClient } = require("mongodb");
 
 //connects to database
-const MONGO_URL = "mongodb+srv://nodebucket:s3cret@bellevueuniversity.t2iiezr.mongodb.net/nodebucket?retryWrites=true&w=majority";
+const MONGO_URL = "mongodb+srv://nodebucket_user:s3cret@bellevueuniversity.t2iiezr.mongodb.net/nodebucket?retryWrites=true&w=majority";
 
 const mongo = async(operations, next) => {
   //catches potential error
@@ -23,7 +30,7 @@ const mongo = async(operations, next) => {
     console.log("Operation was successful");
 
     client.close();
-    console.log("Connection to db closed.")
+    
   } catch (err) {
     //if error(s) caught throws error message
     const error = new Error("Error connecting to db: ", err);
