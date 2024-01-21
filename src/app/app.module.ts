@@ -17,6 +17,7 @@ import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { TasksComponent } from './tasks/tasks.component';
 
+//Create and export app module
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { TasksComponent } from './tasks/tasks.component';
     BaseLayoutComponent,
     NavComponent,
     FooterComponent,
-    TasksComponent
+    TasksComponent,
   ],
   imports: [
     BrowserModule,

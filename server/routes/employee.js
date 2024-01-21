@@ -1,9 +1,45 @@
+/**
+ * Title: employee.js
+ * Author: Jocelyn Dupuis
+ * Date: 1/18/2024
+ * Description: Route handling
+ */
+
+//test API with url: [::1]:3000/api/employees/1007
 "use strict";
 
+//imports express framework and creates a router
 const express = require("express");
 const router = express.Router();
+
+//imports mongo function
 const { mongo } = require("../utils/mongo");
 
+/**
+ * @swagger
+ * /api/employees/{empId}:
+ *   get:
+ *     summary: Get an employee by ID
+ *     description: Retrieves employee details by providing their ID.
+ *     parameters:
+ *       - in: path
+ *         name: empId
+ *         required: true
+ *         description: Employee ID
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       '200':
+ *         description: Successful response with the employee data.
+ *       '400':
+ *         description: Bad request, invalid employee ID.
+ *       '404':
+ *         description: Employee not found.
+ *       '500':
+ *         description: Internal server error.
+ */
+
+//route for handling GET requests
 router.get("/:empId", (req, res, next) => {
   try {
     let { empId } = req.params;
@@ -37,4 +73,5 @@ router.get("/:empId", (req, res, next) => {
   }
 })
 
+//exports
 module.exports = router;

@@ -1,14 +1,14 @@
-<div class="container">
+<div class="signin-container">
   <div class="row justify-content-center mt-5">
-    <div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card shadow">
-        <div class="card-title text-center boarder-bottom">
-          <h2 class="p-3">Employee Sign In</h2>
+        <div class="card-title text-center border-bottom">
+          <h2>Employee Sign In</h2>
         </div>
 
-        <!-- error messages -->
+        <!--error message-->
         <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-          {{ errorMessage }}
+          {{errorMessage}}
         </div>
 
         <div class="card-body">
@@ -19,10 +19,10 @@
             </div>
 
             <div class="d-grid">
-              <button type="submit" class="btn btn-dark">
-                <span *ngIf="isLoading">Sign In</span>
+              <button type="submit" class="btn">
+                <span *ngIf="!isLoading">Sign In</span>
 
-                <div *ngif="isLoading">
+                <div *ngIf="isLoading">
                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 </div>
               </button>
@@ -30,7 +30,7 @@
           </form>
         </div>
       </div>
-      <a routerLink="/" class="text-dark text-underline-hover">Return</a>
+      <a routerLink="/" class="text-underline-hover">Return</a>
     </div>
   </div>
 </div>
