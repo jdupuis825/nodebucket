@@ -1,8 +1,9 @@
 /**
  * Title: security.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
-*/
+ * Author: Jocelyn Dupuis
+ * Date: 01/18/2023
+ * Description: ts file for security module
+ */
 
 // imports statements
 import { NgModule } from '@angular/core';

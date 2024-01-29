@@ -1,7 +1,8 @@
 /**
  * Title: app.component.ts
- * Author: Professor Krasso
- * Date: 8/5/23
+ * Author: Jocelyn Dupuis
+ * Date: 01/18/2024
+ * Description: ts file for app component
  */
 
 // imports statements
@@ -15,5 +16,6 @@ import { Component } from '@angular/core';
   `,
   styles: []
 })
+//exports
 export class AppComponent {
 }

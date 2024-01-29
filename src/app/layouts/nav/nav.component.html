@@ -4,15 +4,15 @@
 <!--Description: HTML file for nav component-->
 
 <!--main nav bar-->
-<nav class="ps-4 navbar-navbarexpand-sm navbar-dark bg-dark fixed-top">
+<nav class="ps-4 navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
   <a routerLink="/" class="navbar-brand">Nodebucket</a>
 
   <!--nav bar button-->
   <button
     class="navbar-toggler"
     type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarResponsive"
+    data-base-toggle="collapse"
+    data-base-target="#navbarResponsive"
     aria-controls="navbarResponsive"
     aria-expanded="false"
     aria-label="Toggle navigation"
@@ -22,18 +22,20 @@
 
   <!--navbar items-->
   <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav ms-auto p-2">
+    <ul class="navbar-nav ms-auto p-2 justify-content-between nav-font">
+      <!--navigation tabs-->
       <li class="navbar-item">
         <a routerLink="/home" class="nav-link">Home</a>
       </li>
       <li class="navbar-item">
-        <a routerLink="#" class="nav-link">About Us</a>
+        <a routerLink="/about" class="nav-link">About Us</a>
       </li>
       <li class="navbar-item">
-        <a routerLink="#" class="nav-link">Contact Us</a>
+        <a routerLink="/contact" class="nav-link">Contact Us</a>
       </li>
 
-      <li *ngIf="!isLoggedIn">
+      <!--sign in icon button-->
+      <li *ngIf="!isLoggedIn" class="sign-in-out-button">
         <a class="nav-link" routerLink="/security/signin">Sign In</a>
       </li>
 
@@ -63,7 +65,7 @@
           <a (click)="signout()" class="dropdown-item link">Sign Out</a>
         </li>
       </ul>
-      </li>
+     </li>
     </ul>
   </div>
 </nav>

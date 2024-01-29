@@ -44,7 +44,7 @@ const mongo = async(operations, next) => {
 
     //log out the error
     console.log("Error connecting to db: ", err);
-    next(error);
+    next(err);
   }
 };
 //exports

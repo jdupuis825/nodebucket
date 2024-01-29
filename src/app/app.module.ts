@@ -1,13 +1,14 @@
 /**
  * Title: app.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
+ * Author: Jocelyn Dupuis
+ * Date: 01/18/2024
+ * Description: ts file for app module
  */
 
 // imports statements
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContactComponent } from './contact/contact.component';
 
 //Create and export app module
 @NgModule({
@@ -27,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavComponent,
     FooterComponent,
     TasksComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,4 +41,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [],
   bootstrap: [AppComponent]
 })
+
+//exports
 export class AppModule { }

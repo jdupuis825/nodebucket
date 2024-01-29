@@ -1,7 +1,8 @@
 /**
  * Title: security-routing.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
+ * Author: Jocelyn Dupuis
+ * Date: 01/18/2023
+ * Description: ts file for modules security routing
  */
 
 // imports statements
@@ -10,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 
+//declares routes and path
 const routes: Routes = [
   {
     path: '',

@@ -1,0 +1,14 @@
+/**
+Name: Jocelyn Dupuis
+File: signin.component.css
+Date: 01/28/2024
+Description: CSS file for signin component
+*/
+
+/*styling for signin button*/
+.btn {
+  color: black;
+  background-color: #946b2d;
+  border: 2px solid white;
+
+}

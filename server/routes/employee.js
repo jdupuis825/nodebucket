@@ -80,6 +80,7 @@ router.get("/:empId", (req, res, next) => {
 })
 
 /**
+ * findAllTasks
  * @swagger
  * /api/employees/{empId}/tasks:
  *   get:
@@ -154,6 +155,7 @@ router.get('/:empId/tasks', (req, res, next) => {
 
 
 /**
+ * createTask
  * @swagger
  * /api/employees/{empId}/tasks:
  *   post:

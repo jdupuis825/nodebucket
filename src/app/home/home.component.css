@@ -5,12 +5,14 @@ Date: 01/21/2024
 Description: CSS file for home component
 */
 
+/*styling for main container for the home page*/
 .container-home {
   background-color: #000000;
   height: 100%;
   width: 100%;
 }
 
+/*styling for heading 2 element*/
 h2 {
   color: #946b2d;
   text-align: center;
@@ -19,18 +21,21 @@ h2 {
   margin-bottom: 2%;
 }
 
+/*styling for p element*/
 p {
  text-align: center;
  font-size: 1.2em;
  color: white;
 }
 
+/*styling for picture on home page*/
 .home-pic {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
+/*styling for attribution link*/
 .attribution-link {
   font-size: small;
 }

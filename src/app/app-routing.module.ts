@@ -1,7 +1,8 @@
 /**
  * Title: app-routing.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
+ * Author: Jocelyn Dupuis
+ * Date: 01/18/2024
+ * Description: ts file for app routing
  */
 
 // imports statements
@@ -11,6 +12,8 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
 import { HomeComponent } from './home/home.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { authGuard } from './shared/auth.guard';
+import { ContactComponent } from './contact/contact.component';
+import { Component } from '@angular/core';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -32,6 +35,11 @@ const routes: Routes = [
         path: 'task-management',
         component: TasksComponent,
         canActivate: [authGuard]
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
+        title: 'Nodebucket: Contact'
       }
     ]
   },
@@ -47,4 +55,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true, enableTracing: false, scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
+
+//exports class
 export class AppRoutingModule { }
