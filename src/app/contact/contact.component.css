@@ -7,7 +7,7 @@ Description: CSS file for task component
 
 /*styling for contact container*/
 .container-contact {
-  background-color: #000000;
+  background-color: #223164;
   height: 100%;
   width: 100%;
 }
@@ -19,6 +19,8 @@ h2 {
   margin-bottom: 2%;
   color: #946b2d;
   padding-top: 2%;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 /*styling for heading 4*/
@@ -28,23 +30,19 @@ h4 {
 
 /*styling for google map*/
 .map {
-  /**margin-left: 33%;*/
-  margin-bottom: 3%;
+  margin-bottom: 2%;
   float: left;
-  /*display: list-item;*/
   margin-left: 15%;
-  /*margin-right: 10px;*/
   margin-top: 2%;
-
 }
 
 /*styling for contact info*/
 .contact-info {
   float: right;
   color: white;
-  margin-top: 2%;
+  margin-top: 1.5%;
   margin-right: 25%;
-  text-align: left;
+  text-align: center;
 }
 
 /*styling for ravenclaw banner*/
@@ -53,4 +51,14 @@ h4 {
   margin-left: auto;
   margin-right: auto;
   clear: both;
+  border: 3px solid white;
+}
+
+/*styling for attribution link*/
+.attribution-link {
+  color: white;
+  font-size: small;
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }

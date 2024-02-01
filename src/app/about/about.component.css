@@ -1,0 +1,59 @@
+/*styling for about container*/
+.container-about {
+  background-color: #223164;
+  height: 100%;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  margin-top: -.5%;
+  margin-bottom: 2%;
+  color: #946b2d;
+  padding-top: 2%;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/*styling for heading 4*/
+h4 {
+  color: white;
+  font-weight: bold;
+  margin-left: 5%;
+}
+
+/*styling for p element*/
+p {
+  text-align: left;
+  font-size: 1em;
+  color: white;
+  margin-left: 5%;
+  margin-top: 2%;
+  margin-right: 50%;
+ }
+
+ /*styling for about info*/
+.about-info {
+  color: white;
+  text-align: left;
+  margin-bottom: 3%;
+  float: left;
+  /*margin-left: 5%;
+  margin-top: 2%;*/
+}
+
+/*styling for todo picture on about page*/
+.about-pic {
+  float: right;
+  margin-top: -50%;
+  margin-right: 5%;
+  border: 3px solid black;
+}
+
+/*styling for attribution link*/
+.attribution-link {
+  font-size: small;
+  text-align: left;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}

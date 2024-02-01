@@ -21,6 +21,7 @@ const options = {
       info: {
           title: "Nodebucket API",
           version: "1.0.0",
+          description: 'Employee API'
       },
   },
   //set API to the routes folder
@@ -43,7 +44,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../dist/nodebucket')))
 app.use('/', express.static(path.join(__dirname, '../dist/nodebucket')))
 
-app.use("/api/employees", employeeRoute)
+app.use("/api/employees", employeeRoute);
 
 //error handler: 404 errors
 app.use(function(req, res, next) {

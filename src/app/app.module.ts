@@ -19,6 +19,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 //Create and export app module
 @NgModule({
@@ -30,6 +31,7 @@ import { ContactComponent } from './contact/contact.component';
     FooterComponent,
     TasksComponent,
     ContactComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

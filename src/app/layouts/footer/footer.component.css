@@ -1,0 +1,12 @@
+
+footer {
+  background-color: rgb(47, 44, 44);
+  margin: -1%;
+  margin-bottom: -1%;
+}
+p {
+  color: lightgray;
+  text-align: center;
+  padding-top: .5%;
+  padding-bottom: .5%;
+}
