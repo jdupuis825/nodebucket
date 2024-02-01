@@ -10,6 +10,7 @@ Description: CSS file for home component
   background-color: #223164;
   height: 100%;
   width: 100%;
+  margin-top: -1%;
 }
 
 /*styling for heading 2 element*/
@@ -17,7 +18,7 @@ h2 {
   color: #946b2d;
   text-align: center;
   font-size: 2em;
-  margin-top: 5%;
+  margin-top: 1%;
   margin-bottom: 2%;
   font-weight: bold;
 }

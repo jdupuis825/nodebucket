@@ -10,7 +10,8 @@ Description: CSS file for task component
   background-color: #000000;
   height: 100%;
   width: 100%;
-  padding-bottom: 5%;
+  margin-top: -1%;
+  margin-bottom: -.5%;
 }
 
 /*styling for main section*/

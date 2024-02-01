@@ -5,22 +5,17 @@
  * Description: Route handling
  */
 
-//test API with url: [::1]:3000/api/employees/1007
 "use strict";
 
-//imports express framework and creates a router
+// Import statements.
 const express = require("express");
-const router = express.Router();
-
-//imports mongo function
-const { mongo } = require("../utils/mongo");
-const Ajv = require('ajv'); //Another JavaScript Validator
+const router= express.Router();
+const { mongo } = require("../utils/mongo")
 const { ObjectId } = require('mongodb');
-
+const Ajv = require('ajv');
 const ajv = new Ajv();
 
-//ajv schema validation
-//defined task schema with valid properties
+// ajv schema validation for the employee document.
 const taskSchema = {
   type: 'object',
   properties: {
@@ -30,7 +25,7 @@ const taskSchema = {
   additionalProperties: false
 }
 
-//task schema for validation
+// Task schema for validation
 const tasksSchema = {
   type: 'object',
   required: ['todo', 'done'],
@@ -41,8 +36,8 @@ const tasksSchema = {
       items: {
         type: 'object',
         properties: {
-          _id: { type: 'string'},
-          text: { type: 'string'}
+          _id: { type: 'string' },
+          text: { type: 'string' }
         },
         required: ['_id', 'text'],
         additionalProperties: false
@@ -63,13 +58,15 @@ const tasksSchema = {
   }
 }
 
+
+
 /**
  * findEmployeeById
  * @swagger
  * /api/employees/{empId}:
  *   get:
- *     summary: Find employee by ID
- *     description: Finds employee details by providing their ID
+ *     summary: Get an employee by ID
+ *     description: Retrieve employee details by providing their ID.
  *     parameters:
  *       - in: path
  *         name: empId
@@ -79,7 +76,7 @@ const tasksSchema = {
  *           type: integer
  *     responses:
  *       '200':
- *         description: Successful response with the employee ID.
+ *         description: Successful response with the employee data.
  *       '400':
  *         description: Bad request, invalid employee ID.
  *       '404':
@@ -88,14 +85,17 @@ const tasksSchema = {
  *         description: Internal server error.
  */
 
-
-//route for handling GET requests
+// Define a route for handling GET requests to '/api/employees/:empId'.
 router.get("/:empId", (req, res, next) => {
   try {
+    // Extract the 'empId' parameter from the request parameters.
     let { empId } = req.params;
+    // Parse the 'empId' as an integer (base 10).
     empId = parseInt(empId, 10);
 
+    // Check if 'empId' is not a valid number.
     if (isNaN(empId)) {
+      // If not a number, handle the error.
       const err = new Error("Employee ID must be a number.");
       err.status = 400;
       console.log("err", err);
@@ -103,34 +103,38 @@ router.get("/:empId", (req, res, next) => {
       return; // exit out of the if statement
     }
 
+    // Use the 'mongo' function to interact with the MongoDB database.
     mongo(async db => {
-      const employee = await db.collection("employees").findOne({empId}); //findOne returns a single document
+      // Find one document in the 'employees' collection by employee id number.
+      const employee = await db.collection("employees").findOne({empId}); // findOne returns a single document.
 
+      // If employee id is not found, handle error.
       if (!employee) {
-        const err = new Error("Unable to find employee with empId " + empId);
+        const err = new Error("employee not found.");
         err.status = 404;
         console.log("err", err);
         next(err);
-        return; // exit out ot the if statement
+        return; // exit out of the if statement
       }
-      //if no errors sends JSON to client
-      res.send(employee); //send the employee record as a JSON response object
-    });
 
-    //catches all other errors
+      res.send(employee); // send the employee record as a JSON response object.
+    })
+
   } catch (err) {
+    // Handle any unexpected errors by logging them and passing them to the next middleware.
     console.error("Error: ", err);
     next(err);
   }
 })
+
 
 /**
  * findAllTasks
  * @swagger
  * /api/employees/{empId}/tasks:
  *   get:
- *     summary: Finds all tasks with employee ID
- *     description: Retrieves tasks with employee ID
+ *     summary: Finds all tasks by employee ID
+ *     description: Retrieves tasks by the employee ID
  *     parameters:
  *       - in: path
  *         name: empId
@@ -138,65 +142,63 @@ router.get("/:empId", (req, res, next) => {
  *         description: Employee ID
  *         schema:
  *           type: integer
- *       - in: path
- *         name: tasks
- *         required: true
- *         description: tasks
- *         schema:
- *           type: string
  *     responses:
  *       '200':
  *         description: Successful response with the employee data.
  *       '400':
- *         description: Bad request.
+ *         description: Bad request, invalid employee ID.
  *       '404':
- *         description: Task not found.
+ *         description: Task not found for the specified ID.
  *       '500':
  *         description: Internal server error.
  */
 
 
-//find all tasks API and empId
+// Find all tasks API by empId.
 router.get('/:empId/tasks', (req, res, next) => {
   try {
-    let { empId } = req.params;
-    empId = parseInt(empId, 10); //parse the empId to an integer
+    let {empId} = req.params;
+    empId = parseInt(empId, 10); // Parse the empId to an integer.
 
     if (isNaN(empId)) {
       const err = new Error('input must be a number');
       err.status = 400;
-      console.error("err", err);
+      console.error('err', err);
       next(err);
-      return;
+      return
     }
 
+
     mongo(async db => {
-      //pulling task for employee
-      const tasks = await db.collection('employees').findOne(
+      // Find employee by empId, projecting only necessary fields.
+      const employee = await db.collection('employees').findOne(
         { empId },
         { projection: { empId: 1, todo: 1, done: 1}}
       )
 
-      console.log('tasks', tasks);
+      console.log('employee', employee);
 
-      //checks to see if error
-      if (!tasks) {
-        const err = new Error('Unable to find task with empId ' + empId);
+      // If employee not found, handle 404 error.
+      if (!employee) {
+        const err = new Error('Unable to find employee for empId' + empId);
         err.status = 404;
-        console.error("err", err);
+        console.error('err', err);
         next(err);
         return;
       }
-      //if no error sends tasks
-      res.send(tasks);
+
+      // Send the employee data in the response.
+      res.send(employee);
 
     }, next)
 
   } catch (err) {
-    console.error("err", err);
+    // Handle any unexpected errors by logging them and passing them to the next middleware.
+    console.error('err', err);
     next(err);
   }
 })
+
 
 
 /**
@@ -214,6 +216,7 @@ router.get('/:empId/tasks', (req, res, next) => {
  *         schema:
  *           type: integer
  *     requestBody:
+ *       description: Task information
  *       required: true
  *       content:
  *         application/json:
@@ -226,38 +229,37 @@ router.get('/:empId/tasks', (req, res, next) => {
  *       '201':
  *         description: Task created.
  *       '400':
- *         description: Bad request.
+ *         description: Bad request, invalid input.
  *       '404':
- *         description: Task not found.
+ *         description: Employee not found for the specified ID.
  *       '500':
  *         description: Internal server error.
  */
 
 
-//create task API
+// Create task API
 router.post('/:empId/tasks', (req, res, next) => {
   try {
-    console.log(req.params)
-    let { empId } = req.params;
+    let { empId } = req.params // gets Id
     empId = parseInt(empId, 10);
 
-    //validate if it is a number
+    // empId validation
     if (isNaN(empId)) {
-      const err = new Error('Input must be a number');
+      const err = new Error('input must be a number');
       err.status = 400;
-      console.error("err", err);
+      console.error('err', err);
       next(err);
       return;
     }
 
-    //req.body validation
+    // req.body validation using Ajv.
     const { text } = req.body;
-    const validator = ajv.compile(taskSchema)
-    const isValid = validator({ text })
+    const validator = ajv.compile(taskSchema);
+    const isValid = validator({ text });
 
-    //if body isn't valid
+    // Checks if the task entry is valid.
     if (!isValid) {
-      const err = new Error('Bad request');
+      const err = new Error('Bad Request');
       err.status = 400;
       err.errors = validator.errors;
       console.error('err', err);
@@ -265,46 +267,51 @@ router.post('/:empId/tasks', (req, res, next) => {
       return;
     }
 
-    //mongo access to create task
+    // Query database to find record.
     mongo(async db => {
+      // Find the employee by empId.
       const employee = await db.collection('employees').findOne({ empId });
 
+      // If employee doesn't exist, throw 404.
       if (!employee) {
-        const err = new Error('Unable to find employee with empId ' + empId);
+        const err = new Error('Unable to find employee empId' + empId);
         err.status = 404;
         console.error('err', err);
         next(err);
         return;
       }
 
+      // Create a new task with a unique ID.
       const task = {
         _id: new ObjectId(),
         text
       }
 
+      // Update the employee's todo list with the new task.
       const result = await db.collection('employees').updateOne(
         { empId },
-        { $push: { todo: task }}
+        { $push: { todo: task}}
       )
 
+      // Check if the task creation was successful.
       if (!result.modifiedCount) {
-        const err = new Error('Unable to create task for empId ' + empId);
+        const err = new Error('Unable to create task for empId' + empId);
         err.status = 500;
-        console.error("err", err);
+        console.error('err', err);
         next(err);
         return;
       }
 
-      //record created with new task response
-      res.status(201).send({ id: task._id });
+      // Send a success response with the task ID.
+      res.status(201).send({ id: task._id })
     }, next)
-
-    //catch any other errors thrown
   } catch (err) {
+    // Handle any unexpected errors.
     console.error('err', err)
     next(err);
   }
 })
+
 
 
 /**
@@ -312,15 +319,15 @@ router.post('/:empId/tasks', (req, res, next) => {
  * @swagger
  * /api/employees/{empId}/tasks:
  *   put:
- *     summary: Updates task for employee
- *     description: Updates tasks with valid employee ID
+ *     summary: Update tasks for an employee
+ *     description: Update task
  *     parameters:
  *       - in: path
  *         name: empId
  *         required: true
- *         description: Employee ID
  *         schema:
  *           type: integer
+ *         description: Employee ID
  *     requestBody:
  *       required: true
  *       content:
@@ -345,29 +352,30 @@ router.post('/:empId/tasks', (req, res, next) => {
  *                 items:
  *                   type: object
  *                   properties:
- *                      _id:
- *                        type: string
- *                      text:
- *                        type: string
+ *                     _id:
+ *                       type: string
+ *                     text:
+ *                       type: string
  *     responses:
  *       '204':
- *         description: Task updated successfully.
+ *         description: Tasks updated successfully
  *       '400':
- *         description: Bad request.
+ *         description: Bad Request
  *       '404':
- *         description: Unable to update task for empId.
+ *         description: Employee not found
  *       '500':
- *         description: Internal server error.
+ *         description: Internal Server Error
  */
 
-//updates task api
-router.put('/:empId,tasks', (req, res, next) => {
+// Update tasks API
+router.put('/:empId/tasks', (req, res, next) => {
   try {
-    let { empId } = req.params;
-    empId = parseInt(empId, 10);
-    console.log('empId', empId);
+    let { empId } = req.params; // Destructure 'empId' from request parameters.
+    empId = parseInt(empId, 10); // Parse empId to ensure it is an integer
+    console.log('empId', empId); // Log empId to the console
 
-    //empId validation
+    // Check if 'empId' is not a valid number; if not,
+    // generate a 400 error response and pass it to the error handler.
     if (isNaN(empId)) {
       const err = new Error('input must be a number');
       err.status = 400;
@@ -376,23 +384,26 @@ router.put('/:empId,tasks', (req, res, next) => {
       return;
     }
 
+    // Create a validator function based on the defined 'tasksSchema'.
     const validator = ajv.compile(tasksSchema);
-    const isValid = validator(req.body); //validates the request body
+    // Use the validator to check if the request body adheres to the specified schema.
+    const isValid = validator(req.body);
 
-    //req.body validation
+    // Check if the request body is not valid according to the specified schema.
     if (!isValid) {
-      const err = new Error('Bad request');
+      const err = new Error('Bad Request');
       err.status = 400;
       err.errors = validator.errors;
       console.error('err', err);
       next(err);
-      return; //return to exit the function
+      return; // return to exit the function
     }
-    //mongo access to update task
+
     mongo(async db => {
+      // Find the employee in the database based on 'empId'.
       const employee = await db.collection('employees').findOne({ empId });
 
-      //if the employee is not found
+      // if the employee is not found, generate a 404 error response.
       if (!employee) {
         const err = new Error('Unable to find employee with empId ' + empId);
         err.status = 404;
@@ -401,13 +412,13 @@ router.put('/:empId,tasks', (req, res, next) => {
         return;
       }
 
-      //if valid will update the record
+      // Update the employee's tasks in the database.
       const result = await db.collection('employees').updateOne(
         { empId },
         { $set: { todo: req.body.todo, done: req.body.done }}
       )
 
-      //if the record was not updated will return a 500 status code
+      // If the record was not updated, return a 500 status code.
       if (!result.modifiedCount) {
         const err = new Error('Unable to update tasks for empId ' + empId);
         err.status = 500;
@@ -416,92 +427,93 @@ router.put('/:empId,tasks', (req, res, next) => {
         return;
       }
 
+      // Send a success response with a 204 status code.
       res.status(204).send();
     }, next);
-
-    //catch all other errors
   } catch (err) {
-    console.error('err', err);
+    console.log('err', err);
     next(err);
   }
 });
 
 
 /**
- * deleteTask
- * @swagger
- * /api/employees/{empId}/tasks/{taskId}:
- *   delete:
- *     summary: Deletes task
- *     description: Deletes tasks from valid logged employee ID
- *     parameters:
- *       - in: path
- *         name: empId
- *         required: true
- *         description: Employee ID
- *         schema:
- *           type: integer
- *       - in: path
- *         name: taskId
- *         required: true
- *         description: Task ID
- *         schema:
- *           type: string
- *     responses:
- *       '204':
- *         description: Task deleted successfully.
- *       '400':
- *         description: Bad request.
- *       '404':
- *         description: Unable to find employee with empId or task with taskId.
- *       '500':
- *         description: Internal server error.
- */
+  * deleteTask
+  * @swagger
+  * /api/employees/{empId}/tasks/{taskId}:
+  *   delete:
+  *     summary: Delete a task for an employee
+  *     description: Delete Task
+  *     parameters:
+  *       - in: path
+  *         name: empId
+  *         required: true
+  *         schema:
+  *           type: integer
+  *         description: Employee ID
+  *       - in: path
+  *         name: taskId
+  *         required: true
+  *         schema:
+  *           type: string
+  *         description: Task ID
+  *     responses:
+  *       '204':
+  *         description: Task deleted successfully
+  *       '400':
+  *         description: Bad Request
+  *       '404':
+  *         description: Employee or task not found
+  *       '500':
+  *         description: Internal Server Error
+  */
 
-//delete task API
+// Delete tasks API
 router.delete('/:empId/tasks/:taskId', (req, res, next) => {
   try {
+    // Destructure empId and TaskId from request parameters
     let { empId, taskId } = req.params;
+    // Parse 'empId' to ensure it is an integer
     empId = parseInt(empId, 10);
 
-    //empId validation
+    // If the 'empId' is not a valid number, generate a 404 error response
+    // and pass it to the error handler.
     if (isNaN(empId)) {
-      const err = new Error('Input must be a number');
+      const err = new Error('input must be a number');
       err.status = 400;
       console.error('err', err);
       next(err);
       return;
     }
 
-    //mongo access to delete task
     mongo(async db => {
+      // Find the employee by empId.
       let employee = await db.collection('employees').findOne({ empId });
 
-      //if the employee is not found
+      // If the employee is not found, generate a 404 error response.
       if (!employee) {
         const err = new Error('Unable to find employee with empId ' + empId);
         err.status = 404;
-        console.error('err', err);
+        console.err('err', err);
         next(err);
         return;
       }
 
-      //if employee does not have a todo array create one
+      // Ensures that the 'todo' and 'done' arrays exist for the employee.
       if (!employee.todo) employee.todo = [];
-      //if employee does not have a done array create one
-      if (!employee.done) employee.done = [];
 
-      //filters the todo array
+      // Filter the 'todo' and 'done' arrays to remove the task with the specified taskId.
       const todo = employee.todo.filter(task => task._id.toString() !== taskId.toString());
-      //filters the done array
       const done = employee.done.filter(task => task._id.toString() !== taskId.toString());
 
-      //updates the employee record with the new todo and done arrays
+      // Update the 'todo' and 'done' fields for the employee with the specified 'empId'
+      // in the MongoDB 'employees' collection.
       const result = await db.collection('employees').updateOne(
         { empId },
-        { $set: { todo: todo, done: done}}
+        { $set: { todo: todo, done: done }}
       )
 
+      // Send a success response with a 204 status code.
       res.status(204).send();
     }, next);
   } catch (err) {
@@ -510,5 +522,5 @@ router.delete('/:empId/tasks/:taskId', (req, res, next) => {
   }
 });
 
-//exports
+// Export the router for use in other modules.
 module.exports = router;

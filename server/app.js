@@ -14,6 +14,9 @@ const swaggerJsdoc = require('swagger-jsdoc');
 
 const employeeRoute = require("./routes/employee");
 
+// Creates express app
+const app = express()
+
 //title and version number
 const options = {
   definition: {
@@ -31,8 +34,6 @@ const options = {
 //openapi specifications variable using swaggerJsdoc
 const openapiSpecification = swaggerJsdoc(options);
 
-// Creates express app
-const app = express()
 
 //wires openapiSpecification to the app
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));

@@ -73,7 +73,12 @@
 
       <div class="p-3 border bg-light">
 
-        <div class="container">
+        <div class="container task-column"
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doneList]"
+        (cdkDropListDropped)="drop($event)">
 
           <div *ngIf="todo.length === 0">
             <div class="alert alert-info">
@@ -81,7 +86,7 @@
             </div>
           </div>
 
-          <div *ngFor="let item of todo" class="mt-2">
+          <div *ngFor="let item of todo" cdkDrag class="mt-2">
             <div class="row border bg-white">
 
               <!--column 1 of task item-->
@@ -95,10 +100,14 @@
               <!--column 2 of task item-->
               <div class="col-sm-6">
                 <div class="card-body float-end">
-                  <button class="btn">
+                  <button (click)="deleteTask(item._id)" class="btn">
                     <span class="material-icons">delete</span>
                   </button>
                 </div>
+              </div>
+
+              <div class="col-12 d-sm-none d-md-none d-lg-none d-xl-none d-grid gap-2 p-2">
+                <button (click)="deleteTask(item._id)" class="btn btn-secondary">Delete</button>
               </div>
               <!--end column 2-->
             </div>
@@ -115,7 +124,12 @@
 
       <div class="p-3 border bg-light">
 
-        <div class="container">
+        <div class="container task-column"
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList]"
+        (cdkDropListDropped)="drop($event)">
 
           <div *ngIf="done.length === 0">
             <div class="alert alert-info">
@@ -123,7 +137,7 @@
             </div>
           </div>
 
-          <div *ngFor="let item of done" class="mt-2">
+          <div *ngFor="let item of done" cdkDrag class="mt-2">
             <div class="row border bg-white">
 
               <!--column 1 of task item-->
@@ -137,10 +151,14 @@
               <!--column 2 of task item-->
               <div class="col-sm-6">
                 <div class="card-body float-end">
-                  <button class="btn">
+                  <button (click)="deleteTask(item._id)" class="btn">
                     <span class="material-icons">delete</span>
                   </button>
                 </div>
+              </div>
+
+              <div class="col-12 d-sm-none d-md-none d-lg-none d-xl-none d-grid gap-2 p-2">
+                <button (click)="deleteTask(item._id)" class="btn btn-secondary">Delete</button>
               </div>
               <!--end column 2-->
             </div>

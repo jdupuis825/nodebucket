@@ -20,6 +20,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 //Create and export app module
 @NgModule({
@@ -38,7 +39,8 @@ import { AboutComponent } from './about/about.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
