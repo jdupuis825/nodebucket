@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
+import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 //declares routes and path
 const routes: Routes = [
@@ -21,6 +22,11 @@ const routes: Routes = [
         path: 'signin',
         component: SigninComponent,
         title: 'Nodebucket: Sign In'
+      },
+      {
+        path: '**',
+        component: PageNotFoundComponent,
+        title: 'Not Found'
       }
     ]
   }

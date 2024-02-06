@@ -402,7 +402,6 @@ router.put('/:empId/tasks', (req, res, next) => {
     mongo(async db => {
       // Find the employee in the database based on 'empId'.
       const employee = await db.collection('employees').findOne({ empId });
-
       // if the employee is not found, generate a 404 error response.
       if (!employee) {
         const err = new Error('Unable to find employee with empId ' + empId);
@@ -411,7 +410,11 @@ router.put('/:empId/tasks', (req, res, next) => {
         next(err);
         return;
       }
+      console.log(employee);
 
+      console.log("EmpId", empId);
+      console.log("toto", req.body.todo);
+      console.log("done", req.body.done);
       // Update the employee's tasks in the database.
       const result = await db.collection('employees').updateOne(
         { empId },

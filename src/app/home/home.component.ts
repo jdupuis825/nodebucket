@@ -1,7 +1,8 @@
 /**
  * Title: home.component.ts
- * Author: Professor Krasso
- * Date: 8/5/23
+ * Author: Jocelyn Dupuis
+ * Date: 01/18/2024
+ * Description: ts file for home component
  */
 
 // imports statements
@@ -12,6 +13,8 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+//exports
 export class HomeComponent {
 
 }

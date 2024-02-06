@@ -1,0 +1,47 @@
+/**
+Name: Jocelyn Dupuis
+File: page-not-found.component.css
+Date: 02/02/2024
+Description: CSS file for page-not-found component
+*/
+
+/*styling for container*/
+.container {
+  background-color: black;
+  background-size: contain;
+}
+
+/*styling for 404 image*/
+.img-fluid {
+  margin-top: 30%;
+  margin-left: 55%;
+}
+
+/*styling for figcaption*/
+figcaption {
+  text-align: center;
+  margin-left: 55%;
+  color: white;
+}
+/*styling for heading 2*/
+h2 {
+  color: rgb(206, 62, 162);
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-top: 31%;
+}
+
+/*styling for heading 1*/
+h1 {
+  color: #946b2d;
+  font-size: 6em;
+  font-weight: bold;
+  margin-left: 5.5%;
+}
+
+/*styling for button*/
+.btn {
+  margin-top: 1%;
+  margin-left: 12%;
+  color: rgb(26, 198, 245);
+}

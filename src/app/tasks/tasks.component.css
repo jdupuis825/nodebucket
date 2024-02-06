@@ -20,7 +20,7 @@ main {
   border: 3px solid rgb(10, 171, 225);
   margin-right: 20%;
   margin-left: 20%;
-  padding-bottom: 3%;
+  padding-bottom: 10%;
 }
 
 /*styling for heading 1*/
@@ -33,6 +33,13 @@ h1 {
 /*styling for heading 4*/
 h4 {
   color: white;
+}
+
+p {
+  color: white;
+  text-align: center;
+  font-size: 1em;
+  border-bottom: 4%;
 }
 
 /*styling for add button*/

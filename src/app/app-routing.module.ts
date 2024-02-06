@@ -15,6 +15,7 @@ import { authGuard } from './shared/auth.guard';
 import { ContactComponent } from './contact/contact.component';
 import { Component } from '@angular/core';
 import { AboutComponent } from './about/about.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -55,9 +56,10 @@ const routes: Routes = [
     loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
   },
   {
+    //path for redirect to 404 path
     path: '**',
     redirectTo: 'security/not-found'
-  }
+  },
 ];
 
 @NgModule({

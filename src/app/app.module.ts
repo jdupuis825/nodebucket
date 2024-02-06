@@ -22,6 +22,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
+
 //Create and export app module
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FooterComponent,
     TasksComponent,
     ContactComponent,
-    AboutComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

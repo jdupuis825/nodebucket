@@ -15,12 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
+import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 @NgModule({
   //declarations
   declarations: [
     SecurityComponent,
-    SigninComponent
+    SigninComponent,
+    PageNotFoundComponent
   ],
   //imports array
   imports: [
