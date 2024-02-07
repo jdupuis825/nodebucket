@@ -1,3 +1,10 @@
+/**
+Name: Jocelyn Dupuis
+File: about.component.css
+Date: 01/21/2024
+Description: CSS file for about component
+*/
+
 /*styling for about container*/
 .container-about {
   background-color: #223164;
@@ -6,6 +13,7 @@
   margin-top: 5%;
 }
 
+/*styling for heading 2*/
 h2 {
   text-align: center;
   margin-top: -1%;

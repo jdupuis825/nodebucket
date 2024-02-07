@@ -23,6 +23,7 @@ h2 {
   font-weight: bold;
 }
 
+/*styling for heading 3*/
 h3 {
   color: white;
   text-align: center;
@@ -34,6 +35,8 @@ p {
  text-align: center;
  font-size: 1.2em;
  color: white;
+ margin-left: 15%;
+ margin-right: 15%;
 }
 
 /*styling for picture on home page*/

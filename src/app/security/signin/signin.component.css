@@ -5,6 +5,24 @@ Date: 01/28/2024
 Description: CSS file for signin component
 */
 
+/*styling for heading 2*/
+h2 {
+  text-align: center;
+  margin-top: -1%;
+  margin-bottom: 2%;
+  color: #946b2d;
+  padding-top: 4%;
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+/*styling for p element*/
+p {
+  color: white;
+  text-align: center;
+  font-size: 1em;
+
+}
 /*styling for main container*/
 .container-fluid {
   background-image: url("/assets/ravenclaw-signin-page.jpeg");
@@ -15,6 +33,7 @@ Description: CSS file for signin component
 
 /*styling for signin container*/
 .signin-container {
+  margin-top: 10%;
 }
 
 /*styling for signin button*/
