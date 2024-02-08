@@ -53,7 +53,7 @@ app.use(function(req, res, next) {
 })
 
 //error handler: all other errors
-app.use(function(err, req, res, next) {
+app.use(function(req, res, next) {
   res.status(err.status || 500) // set response status code
 
   //sends response to client in JSON format with a message and stack trace
